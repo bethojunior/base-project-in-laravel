@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Constantes\UserConstants;
+use App\Constants\UserConstant;
+use App\Constants\UserStatusConstant;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -30,15 +33,17 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    private $user;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->middleware('guest');
+        $this->user = $user;
     }
 
     /**
@@ -65,9 +70,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'user_type_id'      => UserConstant::SUPPORT,
+            'password'          => Hash::make($data['password']),
+            'user_status_id'    => UserStatusConstant::ACTIVE
         ]);
     }
 }

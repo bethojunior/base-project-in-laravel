@@ -1,0 +1,12 @@
+.card .card-body.p-0 .table-responsive .table.m-0 tbody tr{
+    cursor: pointer;
+}
+.content .container-fluid .row .col-lg-3.col-6.div-1 .small-box.bg-info{
+    background-color: red!important;
+}
+.content .container-fluid .row .col-lg-3.col-6.div-2 .small-box.bg-info{
+    background-color: #959595!important;
+}
+.content .container-fluid .row .col-lg-3.col-6.div-4 .small-box.bg-info{
+    background-color: #037773!important;
+}

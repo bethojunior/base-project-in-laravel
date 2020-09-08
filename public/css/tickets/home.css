@@ -1,0 +1,26 @@
+.row.col-lg-12 .card.col-lg-3{
+    margin-left: 2vw;
+}
+.show-ticket{
+    cursor: pointer;
+}
+.preloader-ticket{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-left: 48%;
+    margin-top: 20%;
+    opacity: 0;
+}
+.card.time-line{
+    padding: 0.5vw;
+}
+.card.content{
+    padding: 0.3vw;
+}
+.card.time-line i{
+    position: absolute;
+    right: 0;
+    padding: 0.2vw;
+    cursor: pointer;
+}
