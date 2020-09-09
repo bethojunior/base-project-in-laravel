@@ -8,6 +8,7 @@
 @section('content_header')
     @include('includes.alerts')
 @endsection
+
 <script src="{{ asset('config/main.js') }}"></script>
 <script src="{{ asset('js/libs/jquery.js') }}"></script>
 <script src="{{ asset('js/utils/ElementProperty.js') }}"></script>
