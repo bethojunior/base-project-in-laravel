@@ -21,3 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware('auth')
     ->group(base_path('routes/private/user.php'));
 
+
+Auth::routes();
+
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

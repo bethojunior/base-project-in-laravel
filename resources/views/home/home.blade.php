@@ -2,14 +2,13 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/home/init.css') }}">
 @endsection
-@section('title', 'Suporte - Fábrica 704')
+@section('title', 'Painel ')
 @section('content_header')
-    <h1 class="m-0 text-dark">teste</h1>
+    <h1 class="m-0 text-dark">Tickets</h1>
 @stop
 
-@section('content')
-    @include('includes.alerts')
-    teste
+@section('content_page')
+    <h1 class="m-0 text-dark">Tickets</h1>
 @stop
 
 @section('js')

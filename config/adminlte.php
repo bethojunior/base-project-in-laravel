@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Fábrica704 - Suporte',
+    'title' => '704 Store',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Fábrica </b> 704',
-    'logo_img' => '/assets/images/logo/logo1.png',
-    'logo_img_class' => 'brand-image-xl',
+    'logo' => '<b>704</b> STORE',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Fabrica 704',
+    'logo_img_alt' => '704Store',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,7 +86,9 @@ return [
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => [
+        'lg' => true
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -103,8 +105,8 @@ return [
     'classes_body' => '',
     'classes_brand' => '',
     'classes_brand_text' => '',
-    'classes_content_header' => 'container-fluid',
-    'classes_content' => 'container-fluid',
+    'classes_content_header' => '',
+    'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
@@ -173,7 +175,7 @@ return [
 
     'login_url' => 'login',
 
-    'register_url' => 'register',
+    'register_url' => false,
 
     'password_reset_url' => 'password/reset',
 
@@ -208,11 +210,32 @@ return [
     */
 
     'menu' => [
+        [
+            'text' => 'search',
+            'search' => true,
+            'topnav' => true,
+        ],
+        [
+            'text'        => 'Dashboard',
+            'url'         => 'home',
+            'icon'        => 'fas fa-fw fa-home',
+        ],
+        ['header' => 'Clientes'],
+        [
+            'text'  => 'Gerenciar clientes',
+            'route' => 'customer.index',
+            'icon'  => 'fas fa-fw fa-users',
+        ],
+        [
+            'text'  => 'Gerenciar aplicativos',
+            'route' => 'app.index',
+            'icon'  => 'fas fa-fw fa-mobile-alt',
+        ],
+//        ['header' => 'Usuários'],
 //        [
-//            'text' => 'Buscar cliente',
-//            'search' => true,
-//            'topnav' => true,
-//            'class' => 'search-enterprises'
+//            'text' => 'Gerenciar usuários',
+//            'url'  => 'admin/settings',
+//            'icon' => 'fas fa-fw fa-user',
 //        ],
     ],
 
@@ -232,10 +255,10 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
+        JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
     ],
 
     /*
@@ -305,8 +328,9 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+//                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => 'vendor/sweetalert/sweetalert.all.js',
                 ],
             ],
         ],
@@ -317,7 +341,7 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.min.css',
                 ],
                 [
                     'type' => 'js',
