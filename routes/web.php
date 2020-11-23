@@ -13,15 +13,13 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-//    Route::resource('timelineTickets', 'Ticket\TimelineTicketController');
+    Route::group(['prefix' => 'user'], function () {
+        Route::group(['as' => 'user'], function () {
+            Route::get('', 'User\UserController@index')->name('.index');
+            Route::get('create','User\UserController@create')->name('.create');
+            Route::post('insert', 'User\UserController@insert')->name('.insert');
+        });
+    });
 
 });
 
-
-Route::middleware('auth')
-    ->group(base_path('routes/private/user.php'));
-
-
-Auth::routes();
-
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

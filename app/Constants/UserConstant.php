@@ -6,6 +6,6 @@ namespace App\Constants;
 
 class UserConstant
 {
-    const SUPPORT     = 1;
-    const ENTERPRISE  = 2;
+    const ADMIN     = 1;
+    const REVENDEDORA  = 2;
 }

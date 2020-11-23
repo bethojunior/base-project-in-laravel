@@ -9,8 +9,6 @@ use App\Http\Requests\User\InsertUser;
 use App\Http\Responses\ApiResponse;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
-use App\User;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -47,6 +45,24 @@ class UserController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $users = $this->service
+            ->getAll();
+        return view('users.index')->with(['users' => $users]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    /**
      * @param InsertUser $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -57,11 +73,27 @@ class UserController extends Controller
                 ->service
                 ->insertUser($request->all());
         }catch (\Exception $exception){
-            return redirect()->route('settings.listUSer')
+            return redirect()->route('user.index')
                 ->with('error', $exception->getMessage());
         }
-        return redirect()->route('settings.listUSer')
+        return redirect()->route('user.index')
             ->with('success', 'Usuário inserido com sucesso');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        try{
+            $this
+                ->service
+                ->delete($id);
+        }catch (\Exception $exception){
+            return ApiResponse::error('',$exception->getMessage());
+        }
+        return ApiResponse::success('','Excluido com sucesso');
     }
 
 }

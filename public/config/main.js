@@ -7,10 +7,10 @@ function getEnvironment(){
                 api : 'http://127.0.0.1:8000/api/',
             }
         }, {
-            name: "https://suporte.fb704.com.br/",
+            name: "https://rubyrose.madgic.com.br/",
             hosts : {
-                web : 'https://suporte.fb704.com.br/',
-                api : 'https://suporte.fb704.com.br/api/',
+                web : 'https://rubyrose.madgic.com.br/',
+                api : 'https://rubyrose.madgic.com.br/api/',
             }
         },
 

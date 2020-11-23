@@ -26,19 +26,10 @@ class UserService
     }
 
     /**
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]
      */
     public function getAll(){
         return $this->repository->findAll();
-    }
-
-    /**
-     * @param array $request
-     * @return mixed
-     */
-    public function searchUser(array $request)
-    {
-        return $this->repository->searchUser($request);
     }
 
     /**
@@ -48,12 +39,6 @@ class UserService
      */
     public function update(User $user, array $request)
     {
-        if (isset($request['picture'])) {
-            $filename =
-                \Storage::disk('userprofile')->putFile($user->id, $request['picture']);
-
-            $user->picture = $filename;
-        }
 
         $user->name = $request['name'] ?? $user->name;
         $user->email = $request['email'] ?? $user->email;
@@ -67,6 +52,11 @@ class UserService
         return $user;
     }
 
+    /**
+     * @param array $request
+     * @return User
+     * @throws \Exception
+     */
     public function insertUser(array $request)
     {
         try{
@@ -78,19 +68,11 @@ class UserService
                 'email'             => $request['email'],
                 'phone'             => $request['phone'],
                 'user_type_id'      => $request['user_type_id'],
-                'enterprises_id'    => $request['enterprises_id'] ?? null,
                 'user_status_id'    => UserStatusConstant::ACTIVE,
                 'password'          => Hash::make($request['password']),
             ];
 
             $user = new User($data);
-
-            if (isset($request['profile-image-user'])) {
-                $filename =
-                    \Storage::disk('userprofile')->putFile($user->id, $request['profile-image-user']);
-
-                $user->picture = $filename;
-            }
 
             $user->save();
 
@@ -105,38 +87,22 @@ class UserService
 
     /**
      * @param $id
-     * @return array|\Illuminate\Database\Concerns\BuildsQueries[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]
-     */
-    public function findById($id)
-    {
-        return $this->repository
-            ->findById($id);
-    }
-
-
-    /**
-     * @param array $data
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      * @throws \Exception
      */
-    public function authenticate(array $data)
+    public function delete($id)
     {
-        $user = $this->repository->authenticate($data);
+        try{
+            DB::beginTransaction();
+            $result = $this->repository->find($id);
+            $result->delete();
+            DB::commit();
+        }catch (\Exception $exception){
+            DB::rollBack();
+            throw $exception;
+        }
 
-        if (!$user)
-            throw new \Exception('Usuário não encontrado');
-
-        if (!Hash::check($data['password'] , $user->password))
-            throw new \Exception('Senha inválida');
-
-        return $user;
+        return $result;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[]
-     */
-    public function findAllEnterprises()
-    {
-        return $this->repository->findAllWithoutPaginate();
-    }
 }

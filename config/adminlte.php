@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => '704 Store',
+    'title' => 'Ruby Rose',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>704</b> STORE',
+    'logo' => '<b>Ruby</b> Rose',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -212,31 +212,41 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'search' => false,
+            'topnav' => false,
         ],
         [
-            'text'        => 'Dashboard',
+            'text'        => 'Incio',
             'url'         => 'home',
             'icon'        => 'fas fa-fw fa-home',
         ],
-        ['header' => 'Clientes'],
+        ['header' => 'Usuários'],
         [
-            'text'  => 'Gerenciar clientes',
-            'route' => '#',
-            'icon'  => 'fas fa-fw fa-users',
+            'text' => 'Gerenciar usuários',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listagem de usuários',
+                    'url'  => 'user'
+                ],
+                [
+                    'text' => 'Inserir usuário',
+                    'url'  => 'user/create'
+                ]
+            ]
         ],
-        [
-            'text'  => 'Gerenciar aplicativos',
-            'route' => '#',
-            'icon'  => 'fas fa-fw fa-mobile-alt',
-        ],
-//        ['header' => 'Usuários'],
+//        ['header' => 'Clientes'],
 //        [
-//            'text' => 'Gerenciar usuários',
-//            'url'  => 'admin/settings',
-//            'icon' => 'fas fa-fw fa-user',
+//            'text'  => 'Gerenciar clientes',
+//            'route' => '/',
+//            'icon'  => 'fas fa-fw fa-users',
 //        ],
+//        [
+//            'text'  => 'Gerenciar aplicativos',
+//            'route' => '/',
+//            'icon'  => 'fas fa-fw fa-mobile-alt',
+//        ],
+
     ],
 
     /*

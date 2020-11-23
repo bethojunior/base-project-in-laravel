@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::group(['prefix' => 'user'], function () {
-//    Route::group(['as' => 'user'], function () {
-//        Route::post('authenticate','User\UserController@authenticate');
-//    });
-//});
+Route::group(['prefix' => 'user'], function () {
+    Route::group(['as' => 'user'], function () {
+        Route::delete('{id}','User\UserController@destroy');
+    });
+});

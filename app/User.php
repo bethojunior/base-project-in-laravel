@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Models\Enterprise\Enterprise;
 use App\Models\User\UserStatus;
 use App\Models\User\UserType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,15 +63,4 @@ class User extends Authenticatable
         return $this->belongsTo(UserType::class, 'user_type_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function enterprise()
-    {
-        return $this->belongsTo(Enterprise::class, 'enterprises_id', 'id');
-    }
-
-    public function list(){
-
-    }
 }
