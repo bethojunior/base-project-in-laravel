@@ -223,12 +223,12 @@ return [
         ['header' => 'Clientes'],
         [
             'text'  => 'Gerenciar clientes',
-            'route' => 'customer.index',
+            'route' => '#',
             'icon'  => 'fas fa-fw fa-users',
         ],
         [
             'text'  => 'Gerenciar aplicativos',
-            'route' => 'app.index',
+            'route' => '#',
             'icon'  => 'fas fa-fw fa-mobile-alt',
         ],
 //        ['header' => 'Usuários'],
